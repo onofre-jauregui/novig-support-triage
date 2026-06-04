@@ -1,0 +1,35 @@
+# Secrets — never commit real keys
+.env
+*.local.env
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+
+# OS
+.DS_Store
+
+# Local eval scratch (the committed deliverables are predictions.jsonl + metrics.json at root)
+.eval_cache/
+*.log
+
+# Local tooling artifacts auto-generated in the working tree — not part of this deliverable
+.claude/
+GOALS.md
+ROADMAP.md
+TASKS.md
+.playwright-mcp/
+viewer-render*.png
+
+# Novig's provided assessment data — confidential, not republished here. Drop the files you
+# received into data/ to run locally (see README "Provided datasets").
+data/tickets_train.jsonl
+data/tickets_eval.jsonl
+# Local-only analysis artifact (quotes raw ticket subjects); failure modes are in WRITEUP.md
+error_analysis.md

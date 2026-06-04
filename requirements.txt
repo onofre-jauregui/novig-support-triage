@@ -1,0 +1,5 @@
+# Pinned for reproducibility. Python 3.12.
+anthropic==0.105.2
+pydantic==2.13.4
+python-dotenv==1.2.2
+pytest==9.0.3
