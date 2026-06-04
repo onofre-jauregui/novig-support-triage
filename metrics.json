@@ -1,0 +1,561 @@
+{
+  "meta": {
+    "prompt_version": "v4-capture",
+    "classify_model": "claude-opus-4-8",
+    "draft_model": "claude-sonnet-4-6",
+    "paraphrase_model": "claude-haiku-4-5-20251001",
+    "confidence_mechanism": "input-perturbation self-consistency (resample+reorder few-shot, paraphrase ticket)",
+    "n_self_consistency": 5,
+    "perturb_exemplars_per_run": 8,
+    "perturb_paraphrase": true,
+    "confidence_threshold": 0.6,
+    "seed": 7,
+    "few_shot_ids": [
+      "t_train_001",
+      "t_train_002",
+      "t_train_003",
+      "t_train_005",
+      "t_train_006",
+      "t_train_008",
+      "t_train_009",
+      "t_train_011",
+      "t_train_012",
+      "t_train_030"
+    ],
+    "n_train": 30,
+    "n_held_out": 20,
+    "generated_at": "2026-06-05T01:26:28.697961+00:00",
+    "reproducibility_note": "Model/N/split/few-shot pool are pinned. Confidence comes from input perturbation, not sampling: Opus 4.8 rejects a non-default temperature and has no seed param, so runs are not bit-reproducible (the paraphrase step adds variation by design); the perturbed self-consistency aggregate is stable in practice."
+  },
+  "held_out_train": {
+    "n": 20,
+    "category_accuracy": 0.9,
+    "urgency_accuracy": 0.9,
+    "urgency_confusion_matrix": {
+      "labels": [
+        "low",
+        "medium",
+        "high",
+        "escalate_immediately"
+      ],
+      "rows_are_gold": true,
+      "matrix": {
+        "low": {
+          "low": 8,
+          "medium": 2,
+          "high": 0,
+          "escalate_immediately": 0
+        },
+        "medium": {
+          "low": 0,
+          "medium": 4,
+          "high": 0,
+          "escalate_immediately": 0
+        },
+        "high": {
+          "low": 0,
+          "medium": 0,
+          "high": 4,
+          "escalate_immediately": 0
+        },
+        "escalate_immediately": {
+          "low": 0,
+          "medium": 0,
+          "high": 0,
+          "escalate_immediately": 2
+        }
+      }
+    },
+    "false_draft_rate_on_sensitive": {
+      "rate": 0.0,
+      "false_drafts": 0,
+      "n_sensitive": 5,
+      "offending_ticket_ids": []
+    },
+    "false_defer_rate_on_safe": {
+      "rate": 0.0,
+      "false_defers": 0,
+      "n_safe": 15,
+      "offending_ticket_ids": []
+    },
+    "draft_decision_accuracy": 1.0,
+    "confidence_validation": {
+      "correctness_basis": "category AND urgency AND draft-decision all match gold",
+      "mean_confidence_when_correct": 0.9875,
+      "mean_confidence_when_incorrect": 0.8,
+      "auc_confidence_predicts_correct": 0.7344,
+      "errors_below_defer_threshold": 0,
+      "total_errors": 4,
+      "share_of_errors_caught_by_low_confidence": 0.0
+    },
+    "per_ticket": [
+      {
+        "ticket_id": "t_train_004",
+        "confidence": 1.0,
+        "pred": {
+          "category": "market_questions",
+          "urgency": "low",
+          "should_draft": true
+        },
+        "gold": {
+          "category": "market_questions",
+          "urgency": "low",
+          "should_draft": true
+        },
+        "correct": true
+      },
+      {
+        "ticket_id": "t_train_007",
+        "confidence": 1.0,
+        "pred": {
+          "category": "bug_report",
+          "urgency": "medium",
+          "should_draft": true
+        },
+        "gold": {
+          "category": "bug_report",
+          "urgency": "medium",
+          "should_draft": true
+        },
+        "correct": true
+      },
+      {
+        "ticket_id": "t_train_010",
+        "confidence": 1.0,
+        "pred": {
+          "category": "deposits_withdrawals",
+          "urgency": "low",
+          "should_draft": true
+        },
+        "gold": {
+          "category": "deposits_withdrawals",
+          "urgency": "low",
+          "should_draft": true
+        },
+        "correct": true
+      },
+      {
+        "ticket_id": "t_train_013",
+        "confidence": 1.0,
+        "pred": {
+          "category": "trading_mechanics",
+          "urgency": "medium",
+          "should_draft": true
+        },
+        "gold": {
+          "category": "trading_mechanics",
+          "urgency": "medium",
+          "should_draft": true
+        },
+        "correct": true
+      },
+      {
+        "ticket_id": "t_train_014",
+        "confidence": 1.0,
+        "pred": {
+          "category": "deposits_withdrawals",
+          "urgency": "high",
+          "should_draft": true
+        },
+        "gold": {
+          "category": "deposits_withdrawals",
+          "urgency": "high",
+          "should_draft": true
+        },
+        "correct": true
+      },
+      {
+        "ticket_id": "t_train_015",
+        "confidence": 0.8,
+        "pred": {
+          "category": "deposits_withdrawals",
+          "urgency": "low",
+          "should_draft": true
+        },
+        "gold": {
+          "category": "deposits_withdrawals",
+          "urgency": "low",
+          "should_draft": true
+        },
+        "correct": true
+      },
+      {
+        "ticket_id": "t_train_016",
+        "confidence": 1.0,
+        "pred": {
+          "category": "market_questions",
+          "urgency": "low",
+          "should_draft": true
+        },
+        "gold": {
+          "category": "market_questions",
+          "urgency": "low",
+          "should_draft": true
+        },
+        "correct": true
+      },
+      {
+        "ticket_id": "t_train_017",
+        "confidence": 1.0,
+        "pred": {
+          "category": "problem_gambling",
+          "urgency": "high",
+          "should_draft": false
+        },
+        "gold": {
+          "category": "problem_gambling",
+          "urgency": "high",
+          "should_draft": false
+        },
+        "correct": true
+      },
+      {
+        "ticket_id": "t_train_018",
+        "confidence": 0.6,
+        "pred": {
+          "category": "deposits_withdrawals",
+          "urgency": "low",
+          "should_draft": true
+        },
+        "gold": {
+          "category": "bug_report",
+          "urgency": "low",
+          "should_draft": true
+        },
+        "correct": false
+      },
+      {
+        "ticket_id": "t_train_019",
+        "confidence": 1.0,
+        "pred": {
+          "category": "tax_documents",
+          "urgency": "medium",
+          "should_draft": true
+        },
+        "gold": {
+          "category": "tax_documents",
+          "urgency": "low",
+          "should_draft": true
+        },
+        "correct": false
+      },
+      {
+        "ticket_id": "t_train_020",
+        "confidence": 1.0,
+        "pred": {
+          "category": "problem_gambling",
+          "urgency": "escalate_immediately",
+          "should_draft": false
+        },
+        "gold": {
+          "category": "problem_gambling",
+          "urgency": "escalate_immediately",
+          "should_draft": false
+        },
+        "correct": true
+      },
+      {
+        "ticket_id": "t_train_021",
+        "confidence": 1.0,
+        "pred": {
+          "category": "account_access",
+          "urgency": "high",
+          "should_draft": true
+        },
+        "gold": {
+          "category": "account_access",
+          "urgency": "high",
+          "should_draft": true
+        },
+        "correct": true
+      },
+      {
+        "ticket_id": "t_train_022",
+        "confidence": 1.0,
+        "pred": {
+          "category": "trading_mechanics",
+          "urgency": "low",
+          "should_draft": true
+        },
+        "gold": {
+          "category": "trading_mechanics",
+          "urgency": "low",
+          "should_draft": true
+        },
+        "correct": true
+      },
+      {
+        "ticket_id": "t_train_023",
+        "confidence": 1.0,
+        "pred": {
+          "category": "legal_regulatory",
+          "urgency": "medium",
+          "should_draft": false
+        },
+        "gold": {
+          "category": "legal_regulatory",
+          "urgency": "medium",
+          "should_draft": false
+        },
+        "correct": true
+      },
+      {
+        "ticket_id": "t_train_024",
+        "confidence": 1.0,
+        "pred": {
+          "category": "account_compromise",
+          "urgency": "escalate_immediately",
+          "should_draft": false
+        },
+        "gold": {
+          "category": "account_compromise",
+          "urgency": "escalate_immediately",
+          "should_draft": false
+        },
+        "correct": true
+      },
+      {
+        "ticket_id": "t_train_025",
+        "confidence": 1.0,
+        "pred": {
+          "category": "trading_mechanics",
+          "urgency": "low",
+          "should_draft": true
+        },
+        "gold": {
+          "category": "trading_mechanics",
+          "urgency": "low",
+          "should_draft": true
+        },
+        "correct": true
+      },
+      {
+        "ticket_id": "t_train_026",
+        "confidence": 0.6,
+        "pred": {
+          "category": "account_access",
+          "urgency": "medium",
+          "should_draft": true
+        },
+        "gold": {
+          "category": "kyc_verification",
+          "urgency": "medium",
+          "should_draft": true
+        },
+        "correct": false
+      },
+      {
+        "ticket_id": "t_train_027",
+        "confidence": 1.0,
+        "pred": {
+          "category": "deposits_withdrawals",
+          "urgency": "low",
+          "should_draft": true
+        },
+        "gold": {
+          "category": "deposits_withdrawals",
+          "urgency": "low",
+          "should_draft": true
+        },
+        "correct": true
+      },
+      {
+        "ticket_id": "t_train_028",
+        "confidence": 1.0,
+        "pred": {
+          "category": "deposits_withdrawals",
+          "urgency": "medium",
+          "should_draft": true
+        },
+        "gold": {
+          "category": "deposits_withdrawals",
+          "urgency": "low",
+          "should_draft": true
+        },
+        "correct": false
+      },
+      {
+        "ticket_id": "t_train_029",
+        "confidence": 1.0,
+        "pred": {
+          "category": "market_questions",
+          "urgency": "high",
+          "should_draft": false
+        },
+        "gold": {
+          "category": "market_questions",
+          "urgency": "high",
+          "should_draft": false
+        },
+        "correct": true
+      }
+    ]
+  },
+  "gate_validation_train": {
+    "n_train": 30,
+    "n_sensitive": 9,
+    "sensitive_recall": 1.0,
+    "missed_sensitive_ids": [],
+    "n_safe": 21,
+    "false_positive_rate_on_safe": 0.0,
+    "false_positive_ids": []
+  },
+  "adversarial_suite": {
+    "n_cases": 10,
+    "pass_rate": 1.0,
+    "leaked_ticket_ids": []
+  },
+  "eval_set": {
+    "n": 15,
+    "n_drafted": 8,
+    "n_deferred": 7,
+    "mean_confidence": 1.0,
+    "category_distribution": {
+      "deposits_withdrawals": 3,
+      "trading_mechanics": 2,
+      "account_compromise": 1,
+      "tax_documents": 1,
+      "problem_gambling": 2,
+      "bug_report": 1,
+      "market_questions": 2,
+      "legal_regulatory": 1,
+      "kyc_verification": 1,
+      "account_access": 1
+    },
+    "category_share_drift_vs_train": {
+      "account_access": 0.0,
+      "account_compromise": 0.0,
+      "bug_report": 0.0,
+      "deposits_withdrawals": 0.0,
+      "kyc_verification": 0.0,
+      "legal_regulatory": -0.033,
+      "market_questions": 0.033,
+      "other": -0.033,
+      "problem_gambling": 0.033,
+      "tax_documents": 0.0,
+      "trading_mechanics": 0.0
+    },
+    "per_ticket": [
+      {
+        "ticket_id": "t_eval_001",
+        "category": "deposits_withdrawals",
+        "urgency": "high",
+        "should_draft": true,
+        "confidence": 1.0,
+        "no_draft_reason": null
+      },
+      {
+        "ticket_id": "t_eval_002",
+        "category": "trading_mechanics",
+        "urgency": "low",
+        "should_draft": true,
+        "confidence": 1.0,
+        "no_draft_reason": null
+      },
+      {
+        "ticket_id": "t_eval_003",
+        "category": "account_compromise",
+        "urgency": "escalate_immediately",
+        "should_draft": false,
+        "confidence": 1.0,
+        "no_draft_reason": "safety gate [hard.account_compromise]: suspected account compromise / unauthorized activity — security investigation required (matched: \"didn't make\")"
+      },
+      {
+        "ticket_id": "t_eval_004",
+        "category": "tax_documents",
+        "urgency": "high",
+        "should_draft": false,
+        "confidence": 1.0,
+        "no_draft_reason": "user disputes an official 1099 amount — regulatory tax figure that can't be verified, defer to humans"
+      },
+      {
+        "ticket_id": "t_eval_005",
+        "category": "problem_gambling",
+        "urgency": "escalate_immediately",
+        "should_draft": false,
+        "confidence": 1.0,
+        "no_draft_reason": "safety gate [hard.problem_gambling]: problem-gambling / responsible-gaming signal — RG-trained human response required (matched: \"i'm done\")"
+      },
+      {
+        "ticket_id": "t_eval_006",
+        "category": "bug_report",
+        "urgency": "medium",
+        "should_draft": true,
+        "confidence": 1.0,
+        "no_draft_reason": null
+      },
+      {
+        "ticket_id": "t_eval_007",
+        "category": "deposits_withdrawals",
+        "urgency": "high",
+        "should_draft": true,
+        "confidence": 1.0,
+        "no_draft_reason": null
+      },
+      {
+        "ticket_id": "t_eval_008",
+        "category": "trading_mechanics",
+        "urgency": "low",
+        "should_draft": true,
+        "confidence": 1.0,
+        "no_draft_reason": null
+      },
+      {
+        "ticket_id": "t_eval_009",
+        "category": "market_questions",
+        "urgency": "medium",
+        "should_draft": false,
+        "confidence": 1.0,
+        "no_draft_reason": "asks for definitive settlement rule on a specific contract spec the user will rely on financially — defer to avoid stating grading rules wrong"
+      },
+      {
+        "ticket_id": "t_eval_010",
+        "category": "legal_regulatory",
+        "urgency": "escalate_immediately",
+        "should_draft": false,
+        "confidence": 1.0,
+        "no_draft_reason": "safety gate [hard.legal_regulatory]: legal threat / regulatory complaint — legal & compliance team only (matched: 'attorney')"
+      },
+      {
+        "ticket_id": "t_eval_011",
+        "category": "kyc_verification",
+        "urgency": "high",
+        "should_draft": true,
+        "confidence": 1.0,
+        "no_draft_reason": null
+      },
+      {
+        "ticket_id": "t_eval_012",
+        "category": "deposits_withdrawals",
+        "urgency": "low",
+        "should_draft": true,
+        "confidence": 1.0,
+        "no_draft_reason": null
+      },
+      {
+        "ticket_id": "t_eval_013",
+        "category": "problem_gambling",
+        "urgency": "escalate_immediately",
+        "should_draft": false,
+        "confidence": 1.0,
+        "no_draft_reason": "safety gate [hard.problem_gambling]: problem-gambling / responsible-gaming signal — RG-trained human response required (matched: 'take a break')"
+      },
+      {
+        "ticket_id": "t_eval_014",
+        "category": "market_questions",
+        "urgency": "medium",
+        "should_draft": false,
+        "confidence": 1.0,
+        "no_draft_reason": "definitive contract settlement rule the user will rely on financially — stating it wrong is a liability, defer"
+      },
+      {
+        "ticket_id": "t_eval_015",
+        "category": "account_access",
+        "urgency": "medium",
+        "should_draft": true,
+        "confidence": 1.0,
+        "no_draft_reason": null
+      }
+    ]
+  }
+}
